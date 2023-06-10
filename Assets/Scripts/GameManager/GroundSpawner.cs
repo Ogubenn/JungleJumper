@@ -8,7 +8,7 @@ public class GroundSpawner : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i < 50; i++)
+        for (int i = 0; i < 10; i++)
         {
             GroundMake();
         }
@@ -18,7 +18,7 @@ public class GroundSpawner : MonoBehaviour
     {
         Vector3 yon = Vector3.forward;
 
-        Ground = Instantiate(Ground, Ground.transform.position + yon*6, Ground.transform.rotation);
+        Ground = Instantiate(Ground, Ground.transform.position + yon*18, Ground.transform.rotation);
     }
 
 }//class
