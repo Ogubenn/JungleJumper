@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class GroundSpawner : MonoBehaviour
 {
-    [SerializeField] GameObject Ground;
+    [SerializeField] GameObject Ground;//peþpeþe gelen 2 zemin oluþturuyoruz bu scripti en arkada kalan gamamanager görevi gören ground oluyor.O hiç deðiþimyor.eðer öndeki grounda bu scripti verirsek recursive gibi olur ve süreli çalýþýr ve loopa girip unity crash verir.
 
     private void Start()
     {
-        for (int i = 0; i < 30; i++)
+        for (int i = 0; i < 50; i++)
         {
             GroundMake();
         }
@@ -17,7 +17,8 @@ public class GroundSpawner : MonoBehaviour
     void GroundMake()
     {
         Vector3 yon = Vector3.forward;
-        Ground = Instantiate(Ground, Ground.transform.position + yon, Ground.transform.rotation);
+
+        Ground = Instantiate(Ground, Ground.transform.position + yon*6, Ground.transform.rotation);
     }
 
 }//class
