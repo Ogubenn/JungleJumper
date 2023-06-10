@@ -14,11 +14,11 @@ public class GroundSpawner : MonoBehaviour
         }
     }
 
-    void GroundMake()
+    public void GroundMake()
     {
-        Vector3 yon = Vector3.forward;
+        Vector3 yon = Vector3.forward * 18; // Hangi yöne doðru groundu oluþturacaðýmýz, 18 ile çarpmamýn sebebi groundun boyunun 18 olmasý yoksa üst üste biner.
 
-        Ground = Instantiate(Ground, Ground.transform.position + yon*18, Ground.transform.rotation);
+        Ground = Instantiate(Ground, Ground.transform.position + yon, Ground.transform.rotation); //Instantiate ile ground oluþturuyoruz.
     }
 
 }//class
