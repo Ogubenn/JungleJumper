@@ -32,12 +32,12 @@ public class PlayerController : MonoBehaviour
         if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             if (this.gameObject.transform.position.x > leftBoundary)
-                transform.Translate(Vector3.left * Time.deltaTime * leftRightSpeed);
+                transform.Translate(Vector3.left * Time.deltaTime * leftRightSpeed * -1);
         }
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             if (this.gameObject.transform.position.x < rightBoundary)
-                transform.Translate(Vector3.left * Time.deltaTime * leftRightSpeed * -1);
+                transform.Translate(Vector3.left * Time.deltaTime * leftRightSpeed * 1);
         }
     }
 
