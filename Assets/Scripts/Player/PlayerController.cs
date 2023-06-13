@@ -8,12 +8,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float speed = 3f; //Player baþlangýç hýzý
     Vector3 direction = Vector3.forward; //playerýn hareketinin yönü
     public float difficult = 0.03f; //zaman geçtikçe playerýn hýzý artmasý katsayýsý
+    public bool jump = false; //Zýplama boolu
+    public bool slide = false; //slide boolu
 
     [Header("GameManager")]
     //public GroundSpawner groundSpawner; // Ground Make e ulaþmak için ground spawner scripti
     public float leftBoundary = -3f; //Playerýn sola max ne kadar gidebileceði default -1.5f
     public float rightBoundary = 3f; //Playerýn saða max ne kadar gidebileceði default 1.6f
     public float leftRightSpeed = 4f; //Saða sola gitme hýzý default 5
+    public Animator anim;
     //Rigidbody rb;
 
 
@@ -21,6 +24,42 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         //rb = GetComponent<Rigidbody>();
+        anim = GetComponent<Animator>();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+            jump = true;
+        else
+            jump = false;
+
+
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+            slide = true;
+        else
+            slide = false;
+
+        if (jump == true)
+        {
+            anim.SetBool("isJump", jump);
+            transform.Translate(0, 2f, 0.1f);
+        }
+        else if(jump == false)
+        {
+            anim.SetBool("isJump", jump);
+        }
+
+
+        if (slide == true)
+        {
+            anim.SetBool("isSlide", slide);
+            transform.Translate(0, 0f, 0.1f);
+        }
+        else if (slide == false)
+        {
+            anim.SetBool("isSlide", slide);
+        }
     }
 
     private void FixedUpdate()
