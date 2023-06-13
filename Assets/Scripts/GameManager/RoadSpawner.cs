@@ -5,17 +5,17 @@ using UnityEngine;
 public class RoadSpawner : MonoBehaviour
 {
 
-	public GameObject[] Prefabs;
-	private Transform Player;
+	public GameObject[] Prefabs; // Yol parçalarýnýn farklý prefabslarýný içeren bir dizi.Farklý varyasyonlar
+	private Transform Player; 
 
-	private List<GameObject> ActivePrefabs;
+	private List<GameObject> ActivePrefabs; //O an aktif olan yol parçalarýný listede tutar.
 
 
-	public float BackArea = 200.0f;
-	public int PrefabsOnScreen = 4;
-	public int LastPrefab = 0;
-	public float SpawnPrefab = -100.0f;
-	public float PrefabLength = 99.0f;
+	public float BackArea = 200.0f; //Tile oyuncunun gerisinde kaç birim olduðunu belirtir.alan.Alan geçilince tile silinir ve yeni tile ürer.
+	public int PrefabsOnScreen = 4; //Ekrandaki max tile 
+	public int LastPrefab = 0; //Son üretilen yol parçasýnýn prefabs dizisindeki index deðerini tutar.
+	public float SpawnPrefab = -100.0f; //Tileýn üretileceði z koordinatý
+	public float PrefabLength = 99.0f; //týle uzunluðu
 
 
 	private void Start()
