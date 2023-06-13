@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: f09862c733cec6844a4b3d9b271b26c6, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 9d799b85d04da004f985052505174338, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.10814682, g: 0.067819335, b: 0.15441503, a: 1}
+  m_IndirectSpecularColor: {r: 0.21333751, g: 0.6635065, b: 0.8641102, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -498,7 +498,6 @@ MonoBehaviour:
   BotCar2: {fileID: 2554676412372350896, guid: 06cc87385b2def64aaa2dab33b3c81c7, type: 3}
   BotCar3: {fileID: 3268891325252946858, guid: 7deda2533f2e65446819ad3463946ae7, type: 3}
   BotCar4: {fileID: 5654995475378392042, guid: 1dc3bb540fa3f65419f28e253c22e4ff, type: 3}
-  BotCar5: {fileID: 1358901855631710375, guid: 0abf97a48a96abe49bb4d0b8cbf01d30, type: 3}
 --- !u!65 &1192718569
 BoxCollider:
   m_ObjectHideFlags: 0
