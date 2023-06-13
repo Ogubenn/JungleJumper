@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
         if (jump == true)
         {
             anim.SetBool("isJump", jump);
-            transform.Translate(0, 2f, 0.1f);
+            transform.Translate(0, 0f, 0.1f);
         }
         else if(jump == false)
         {
