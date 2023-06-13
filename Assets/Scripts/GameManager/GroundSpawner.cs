@@ -11,7 +11,7 @@ public class GroundSpawner : MonoBehaviour
     [SerializeField] GameObject BotCar2; //Karþýdan gelen rastgele araba;
     [SerializeField] GameObject BotCar3; //Karþýdan gelen rastgele araba;
     [SerializeField] GameObject BotCar4; //Karþýdan gelen rastgele araba;
-    [SerializeField] GameObject BotCar5; //Karþýdan gelen rastgele araba;
+    //[SerializeField] GameObject BotCar5; //Karþýdan gelen rastgele araba;
 
 
 
@@ -52,10 +52,10 @@ public class GroundSpawner : MonoBehaviour
         {
             Instantiate(BotCar4, Ground.transform.position + botCarSpawnPoint, Quaternion.Euler(0f, 90f, 0f));
         }
-        else if (random == 5)
+        /*else if (random == 5)
         {
             Instantiate(BotCar5, Ground.transform.position + botCarSpawnPoint, Quaternion.Euler(0f, 90f, 0f));
-        }
+        }*/
     }
 
 }//class
