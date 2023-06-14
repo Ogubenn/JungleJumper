@@ -8,7 +8,7 @@ public class RoadSpawner : MonoBehaviour
 	public GameObject[] Prefabs; // Yol parçalarýnýn farklý prefabslarýný içeren bir dizi.Farklý varyasyonlar
 	private Transform Player; 
 
-	private List<GameObject> ActivePrefabs; //O an aktif olan yol parçalarýný listede tutar.
+	private List<GameObject> ActivePrefabs; //Atadýðýmýz bütün tile larý listede tutar.
 
 
 	public float BackArea = 200.0f; //Tile oyuncunun gerisinde kaç birim olduðunu belirtir.alan.Alan geçilince tile silinir ve yeni tile ürer.
