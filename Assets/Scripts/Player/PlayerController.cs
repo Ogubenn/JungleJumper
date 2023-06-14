@@ -17,15 +17,15 @@ public class PlayerController : MonoBehaviour
     public float rightBoundary = 3f; //Playerýn saða max ne kadar gidebileceði default 1.6f
     public float leftRightSpeed = 4f; //Saða sola gitme hýzý default 5
     public Animator anim;
+
+    [Header("Coin")]
     private int score = 0; //coin score
     public int xScore = 5;//coin alýndýðýnda scorun kaç artmasý gereken deðiþkeni
-    //Rigidbody rb;
-
+    [SerializeField] AudioSource coinSounds; //Coin sesi
 
 
     private void Awake()
     {
-        //rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
     }
 
@@ -108,6 +108,7 @@ public class PlayerController : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Coin"))
         {
+            coinSounds.Play();
             score += xScore;
             Debug.Log(score);
             Destroy(other.gameObject);
