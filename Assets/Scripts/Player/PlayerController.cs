@@ -133,7 +133,7 @@ public class PlayerController : MonoBehaviour
             coinSounds.Play();
             score += xScore;
             Debug.Log(score);
-        coinTextScore.text = score.ToString();
+            coinTextScore.text = score.ToString();
     }
 
     #endregion
