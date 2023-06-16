@@ -14,8 +14,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("GameManager")]
     //public GroundSpawner groundSpawner; // Ground Make e ulaþmak için ground spawner scripti
-    public float leftBoundary = -3f; //Playerýn sola max ne kadar gidebileceði default -1.5f
-    public float rightBoundary = 3f; //Playerýn saða max ne kadar gidebileceði default 1.6f
+    public float leftBoundary = -3f; //Playerýn sola max ne kadar gidebileceði default -1.5f    //Sanýrým artýk boundrayler gereksiz
+    public float rightBoundary = 3f; //Playerýn saða max ne kadar gidebileceði default 1.6f //Sanýrým artýk boundrayler gereksiz
     public float leftRightSpeed = 4f; //Saða sola gitme hýzý default 5
     public Animator anim;
     private int desiredLane = 1; //Þerit sayýsý 0 = left , 1 = mmiddle 2 = right
@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour
                 desiredLane = 0;
             }
             /*if (this.gameObject.transform.position.x > leftBoundary)
-                transform.Translate(Vector3.left * Time.deltaTime * leftRightSpeed * 1);*/
+                transform.Translate(Vector3.left * Time.deltaTime * leftRightSpeed * 1);*/ //Sanýrým artýk boundrayler gereksiz
         }
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
@@ -94,7 +94,7 @@ public class PlayerController : MonoBehaviour
                 desiredLane = 2;
             }
             /*if (this.gameObject.transform.position.x < rightBoundary)
-                transform.Translate(Vector3.left * Time.deltaTime * leftRightSpeed * -1);*/
+                transform.Translate(Vector3.left * Time.deltaTime * leftRightSpeed * -1);*/ //Sanýrým artýk boundrayler gereksiz
         }
 
 
