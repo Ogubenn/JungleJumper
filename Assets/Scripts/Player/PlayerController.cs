@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -23,9 +25,10 @@ public class PlayerController : MonoBehaviour
     private int leftRightLerp = 10; //Saða ve sola ýþýnlanmalarda lerpün ne kadar olmasý gerektiði
 
     [Header("Coin")]
-    private int score = 0; //coin score
+    public  int score = 0; //coin score
     public int xScore = 5;//coin alýndýðýnda scorun kaç artmasý gereken deðiþkeni
     [SerializeField] AudioSource coinSounds; //Coin sesi
+    [SerializeField] TextMeshProUGUI coinTextScore;
 
     #endregion
 
@@ -117,11 +120,20 @@ public class PlayerController : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Coin"))
         {
+            TakeCoin();
+            Destroy(other.gameObject);
+        }
+    }
+
+    #endregion
+
+    #region TakeCoin
+    public void TakeCoin()
+    {
             coinSounds.Play();
             score += xScore;
             Debug.Log(score);
-            Destroy(other.gameObject);
-        }
+        coinTextScore.text = score.ToString();
     }
 
     #endregion
