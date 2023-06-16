@@ -20233,8 +20233,10 @@ MonoBehaviour:
   leftRightSpeed: 4
   anim: {fileID: 0}
   laneDistance: 2.2
+  score: 0
   xScore: 1
   coinSounds: {fileID: 1306654598}
+  coinTextScore: {fileID: 1415018357}
 --- !u!54 &4180811359218379293
 Rigidbody:
   m_ObjectHideFlags: 0
