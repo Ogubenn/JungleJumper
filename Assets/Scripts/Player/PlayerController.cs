@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    #region Variables
     [Header("Player")]
     [SerializeField] float speed = 3f; //Player baþlangýç hýzý
     Vector3 direction = Vector3.forward; //playerýn hareketinin yönü
@@ -17,11 +18,16 @@ public class PlayerController : MonoBehaviour
     public float rightBoundary = 3f; //Playerýn saða max ne kadar gidebileceði default 1.6f
     public float leftRightSpeed = 4f; //Saða sola gitme hýzý default 5
     public Animator anim;
+    private int desiredLane = 1; //Þerit sayýsý 0 = left , 1 = mmiddle 2 = right
+    public float laneDistance = 4; //þeritler arasý mesafe
+    private int leftRightLerp = 10; //Saða ve sola ýþýnlanmalarda lerpün ne kadar olmasý gerektiði
 
     [Header("Coin")]
     private int score = 0; //coin score
     public int xScore = 5;//coin alýndýðýnda scorun kaç artmasý gereken deðiþkeni
     [SerializeField] AudioSource coinSounds; //Coin sesi
+
+    #endregion
 
 
     private void Awake()
@@ -72,38 +78,41 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
-            if (this.gameObject.transform.position.x > leftBoundary)
-                transform.Translate(Vector3.left * Time.deltaTime * leftRightSpeed * 1);
+            desiredLane--;
+            if(desiredLane == -1)
+            {
+                desiredLane = 0;
+            }
+            /*if (this.gameObject.transform.position.x > leftBoundary)
+                transform.Translate(Vector3.left * Time.deltaTime * leftRightSpeed * 1);*/
         }
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
-            if (this.gameObject.transform.position.x < rightBoundary)
-                transform.Translate(Vector3.left * Time.deltaTime * leftRightSpeed * -1);
+            desiredLane++;
+            if (desiredLane == 3)
+            {
+                desiredLane = 2;
+            }
+            /*if (this.gameObject.transform.position.x < rightBoundary)
+                transform.Translate(Vector3.left * Time.deltaTime * leftRightSpeed * -1);*/
         }
-    }
 
-    #region groundExit
-    /*
-    private void OnCollisionExit(Collision collision)
-    {
-        if(collision.gameObject.CompareTag("Ground"))
+
+        Vector3 targetPosition = transform.position.z * transform.forward + transform.position.y * transform.up;
+
+        if(desiredLane == 0)
         {
-            StartCoroutine(Desttroy(collision.gameObject));
-            groundSpawner.GroundMake(); // ife her girdiðinde arkadan 1 ground destroy öne 1 ground make yapýcak.
+            targetPosition += Vector3.left * laneDistance;
+        }else if(desiredLane == 2)
+        {
+            targetPosition += Vector3.right * laneDistance;
         }
+
+        transform.position = Vector3.Lerp(transform.position, targetPosition, leftRightLerp * Time.deltaTime);
+
     }
 
-    IEnumerator Desttroy(GameObject groundparam)
-    {
-        yield return new WaitForSeconds(0.2f);
-        groundparam.AddComponent<Rigidbody>(); //0.2 sn bekleyip rigidbody ekliyoruzki gravitye maruz kalýp düþme animasyonu oluþsun.
-
-        yield return new WaitForSeconds(0.4f);
-        Destroy(groundparam); // 0.4 sn bekleyip destroyluyoruz.
-    }
-    */
-    #endregion
-
+    #region Take a coin
     void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("Coin"))
@@ -114,4 +123,6 @@ public class PlayerController : MonoBehaviour
             Destroy(other.gameObject);
         }
     }
+
+    #endregion
 }//class

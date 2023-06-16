@@ -19463,6 +19463,7 @@ MonoBehaviour:
   rightBoundary: 1.5
   leftRightSpeed: 4
   anim: {fileID: 0}
+  laneDistance: 0.8
   xScore: 1
   coinSounds: {fileID: 1306654598}
 --- !u!54 &4180811359218379293
