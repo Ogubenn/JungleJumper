@@ -75,9 +75,12 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector3 movement = direction * speed * Time.deltaTime; //hareket deðeri
-        speed += Time.deltaTime * difficult; //zorluk katsayýsýný speede ekliyoruz.
-        transform.position += movement; //hareket deðerini sürekli pozisyona ekler
+        if (CountDownTimer.isGo == true)
+        {
+            Vector3 movement = direction * speed * Time.deltaTime; //hareket deðeri
+            speed += Time.deltaTime * difficult; //zorluk katsayýsýný speede ekliyoruz.
+            transform.position += movement; //hareket deðerini sürekli pozisyona ekler
+        }
 
         if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
