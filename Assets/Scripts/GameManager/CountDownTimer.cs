@@ -12,7 +12,6 @@ public class CountDownTimer : MonoBehaviour
     private void Start()
     {
         StartCoroutine(CountDown());
-        Time.timeScale = 0;
     }
 
     IEnumerator CountDown()
