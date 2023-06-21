@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,8 +12,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float speed = 3f; //Player baþlangýç hýzý
     Vector3 direction = Vector3.forward; //playerýn hareketinin yönü
     public float difficult = 0.03f; //zaman geçtikçe playerýn hýzý artmasý katsayýsý
-    public bool jump = false; //Zýplama boolu
-    public bool slide = false; //slide boolu
+    private bool jump = false; //Zýplama boolu
+    private bool slide = false; //slide bool
+    private Rigidbody rb;
+    [SerializeField] AudioSource hitSounds; //Player hit sesi
 
     [Header("GameManager")]
     //public GroundSpawner groundSpawner; // Ground Make e ulaþmak için ground spawner scripti
@@ -28,7 +31,7 @@ public class PlayerController : MonoBehaviour
     public  int score = 0; //coin score
     public int xScore = 5;//coin alýndýðýnda scorun kaç artmasý gereken deðiþkeni
     [SerializeField] AudioSource coinSounds; //Coin sesi
-    [SerializeField] TextMeshProUGUI coinTextScore;
+    [SerializeField] TextMeshProUGUI coinTextScore; //coin Text
 
     #endregion
 
@@ -36,6 +39,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         anim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody>();
     }
 
     private void Update()
@@ -86,8 +90,6 @@ public class PlayerController : MonoBehaviour
             {
                 desiredLane = 0;
             }
-            /*if (this.gameObject.transform.position.x > leftBoundary)
-                transform.Translate(Vector3.left * Time.deltaTime * leftRightSpeed * 1);*/ //Sanýrým artýk boundrayler gereksiz
         }
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
@@ -96,8 +98,6 @@ public class PlayerController : MonoBehaviour
             {
                 desiredLane = 2;
             }
-            /*if (this.gameObject.transform.position.x < rightBoundary)
-                transform.Translate(Vector3.left * Time.deltaTime * leftRightSpeed * -1);*/ //Sanýrým artýk boundrayler gereksiz
         }
 
 
@@ -106,7 +106,8 @@ public class PlayerController : MonoBehaviour
         if(desiredLane == 0)
         {
             targetPosition += Vector3.left * laneDistance;
-        }else if(desiredLane == 2)
+        }
+        else if(desiredLane == 2)
         {
             targetPosition += Vector3.right * laneDistance;
         }
@@ -137,4 +138,26 @@ public class PlayerController : MonoBehaviour
     }
 
     #endregion
+
+
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            speed = 0f;
+            anim.SetBool("isDie", true);
+            hitSounds.Play();
+            rb.AddForce(Vector3.forward * -100);
+            Invoke("LoadScene", 1.3f);
+        }
+
+        else
+            anim.SetBool("isDie", false);
+    }
+
+    public void LoadScene()
+    {
+        SceneManager.LoadScene(0);
+    }
 }//class
