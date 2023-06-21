@@ -42,8 +42,8 @@ public class RoadSpawner : MonoBehaviour
 		}
 	}
 
-
-	private void Spawn(int prefabIndex = -1)
+    #region Spawn Methot
+    private void Spawn(int prefabIndex = -1)
 	{
 		GameObject myPrefab;
 		if (prefabIndex == -1)
@@ -58,14 +58,20 @@ public class RoadSpawner : MonoBehaviour
 		ActivePrefabs.Add(myPrefab);
 	}
 
-	private void DeletePrefab()
+    #endregion
+
+
+    #region Delete Methot
+    private void DeletePrefab()
 	{
 		Destroy(ActivePrefabs[0]);
 		ActivePrefabs.RemoveAt(0);
 	}
 
+    #endregion
 
-	private int RandomPrefabs()
+    #region Random Methot
+    private int RandomPrefabs()
 	{
 		if (Prefabs.Length <= 1)
 			return 0;
@@ -78,4 +84,6 @@ public class RoadSpawner : MonoBehaviour
 		LastPrefab = randomIndex;
 		return randomIndex;
 	}
+
+    #endregion
 }

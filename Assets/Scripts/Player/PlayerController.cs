@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
@@ -28,10 +27,11 @@ public class PlayerController : MonoBehaviour
     private int leftRightLerp = 10; //Saða ve sola ýþýnlanmalarda lerpün ne kadar olmasý gerektiði
 
     [Header("Coin")]
-    public  int score = 0; //coin score
+    int score = 0; //coin score
     public int xScore = 5;//coin alýndýðýnda scorun kaç artmasý gereken deðiþkeni
+    int bestScore = 0; //Best score
     [SerializeField] AudioSource coinSounds; //Coin sesi
-    [SerializeField] TextMeshProUGUI coinTextScore; //coin Text
+    [SerializeField] TextMeshProUGUI coinTextScore, bestTextScore; //coin Text and best Text Score
 
     #endregion
 
@@ -40,6 +40,12 @@ public class PlayerController : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
+    }
+
+    private void Start()
+    {
+        bestScore = PlayerPrefs.GetInt("BestScore"); //BestScore anahtarýndaki int deðeri getirdik
+        bestTextScore.text = bestScore.ToString(); //texte ulaþtýk
     }
 
     private void Update()
@@ -140,11 +146,17 @@ public class PlayerController : MonoBehaviour
     #endregion
 
 
-
+    #region Engellere çarpmak ile ilgili iþlemler
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Obstacle"))
         {
+            if(bestScore < score)
+            {
+                //eðer best score oyun içi scoredan küçükse best scoreu scorea eþitledik.
+                bestScore = (int)score;
+                PlayerPrefs.SetInt("BestScore", bestScore);
+            }
             speed = 0f;
             anim.SetBool("isDie", true);
             hitSounds.Play();
@@ -156,8 +168,11 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("isDie", false);
     }
 
+
     public void LoadScene()
     {
         SceneManager.LoadScene(0);
     }
+
+    #endregion
 }//class
