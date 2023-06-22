@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 021cc3afaf1121347ab05134b36a74f1
   - enabled: 1
+    path: Assets/Scenes/CharacterSelection.unity
+    guid: 9cdde2d225c9f9341b64fe058a644961
+  - enabled: 1
     path: Assets/Scenes/JungleJumpers.unity
     guid: 4c0dfe82ab16aec40a3862b32cb20f68
   m_configObjects: {}
